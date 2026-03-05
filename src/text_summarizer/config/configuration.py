@@ -1,6 +1,6 @@
 from src.text_summarizer.constants import *
 from src.text_summarizer.utils.common import readYaml, createDir
-from src.text_summarizer.entity import DataIngestionConfig
+from src.text_summarizer.entity import DataIngestionConfig, DataTransformationConfig
 
 class ConfigurationManager:
     def __init__(self, config_path=CONFIG_FILE_PATH, params_path= PARAMS_FILE_PATH):
@@ -20,3 +20,17 @@ class ConfigurationManager:
             unzipDir= config.unzipDir,
             )
         return dataIngestionConfig
+
+    def getDataTransformationConfig(self)-> DataTransformationConfig:
+        config= self.config.dataTransformation
+
+        createDir([config.rootDir])
+
+        dataTransformConfig= DataTransformationConfig(
+            rootDir= config.rootDir,
+            dataPath= config.dataPath,
+            tokenizerName= config.tokenizerName,
+        )
+
+        return dataTransformConfig
+

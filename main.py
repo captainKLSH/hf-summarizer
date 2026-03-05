@@ -1,5 +1,6 @@
 from src.text_summarizer.logging import logger
 from src.text_summarizer.pipeline.stage_1_data_ingestion_pipeline import DataIngestionTrainingPipeline
+from src.text_summarizer.pipeline.stage_2_data_transformation_pipeline import DataTransformationPipeline
 
 STAGE_NAME = "Data Ingestion stage"
 try:
@@ -10,4 +11,13 @@ try:
 except Exception as e:
     logger.exception(e)
     raise e
-    
+
+STAGE_NAME = "Data Transformation stage"
+try:
+    logger.info(f"Stage: {STAGE_NAME} initiated")
+    dataTransformPipeline=DataTransformationPipeline()
+    dataTransformPipeline.initDataTransform()
+    logger.info(f"Stage: {STAGE_NAME} completed")
+except Exception as e:
+    logger.exception(e)
+    raise e
