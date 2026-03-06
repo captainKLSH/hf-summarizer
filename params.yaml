@@ -1,1 +1,10 @@
-key: "value"
+TrainingArgumets:
+  numTrainEpoch: 1
+  warmupSteps: 500
+  perDeviceTrainBatchSize: 1
+  weightDecay: 0.01
+  loggingSteps: 10
+  evaluationStratergy: steps
+  evalSteps: 500
+  saveSteps: 1e6
+  gradientAccumulationSteps: 16

@@ -10,3 +10,8 @@ dataTransformation:
     rootDir: artifacts/data_transformation
     dataPath: artifacts/data_ingestion/samsum_dataset
     tokenizerName: google/pegasus-cnn_dailymail
+
+modelTrainer:
+    rootDir: artifacts/model_trainer
+    dataPath: artifacts/data_transformation/samsum_dataset
+    modelCkpt: google/pegasus-cnn_dailymail
