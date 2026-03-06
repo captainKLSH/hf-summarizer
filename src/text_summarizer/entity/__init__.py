@@ -28,3 +28,11 @@ class ModelTrainingConfig:
     evalSteps: int
     saveSteps: int
     gradientAccumulationSteps: int
+
+@dataclass(frozen=True)
+class ModelEvaluationConfig:
+    rootDir: Path
+    dataPath: Path
+    modelPath: Path
+    tokenizerPath: Path
+    metricFilePath: Path
