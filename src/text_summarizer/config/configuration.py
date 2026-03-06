@@ -1,6 +1,6 @@
 from src.text_summarizer.constants import *
 from src.text_summarizer.utils.common import readYaml, createDir
-from src.text_summarizer.entity import DataIngestionConfig, DataTransformationConfig
+from src.text_summarizer.entity import DataIngestionConfig, DataTransformationConfig, ModelTrainingConfig
 
 class ConfigurationManager:
     def __init__(self, config_path=CONFIG_FILE_PATH, params_path= PARAMS_FILE_PATH):
@@ -33,4 +33,26 @@ class ConfigurationManager:
         )
 
         return dataTransformConfig
+    
+    def getModelTrainingConfig(self)-> ModelTrainingConfig:
+        config=self.config.modelTrainer
+        params= self.params.TrainingArgumets
+        createDir([config.rootDir])
+        modelTrainingConfig= ModelTrainingConfig(
+            rootDir= config.rootDir,
+            dataPath= config.dataPath,
+            modelCkpt= config.modelCkpt,
+            numTrainEpoch= params.numTrainEpoch,
+            warmupSteps= params.warmupSteps,
+            perDeviceTrainBatchSize= params.perDeviceTrainBatchSize,
+            weightDecay= params.weightDecay,
+            loggingSteps= params.loggingSteps,
+            evaluationStratergy= params.evaluationStratergy,
+            evalSteps= params.evalSteps,
+            saveSteps= params.saveSteps,
+            gradientAccumulationSteps= params.gradientAccumulationSteps,
+
+        )
+
+        return modelTrainingConfig
 
